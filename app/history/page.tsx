@@ -75,15 +75,22 @@ export default function HistoryPage() {
       {/* Popup/modal for conversation details */}
       {selectedId && (
         <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white/90 rounded-2xl shadow-2xl p-8 max-w-2xl w-full relative border border-teal-100">
-            <button
-              className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-2xl cursor-pointer"
-              onClick={() => setSelectedId(null)}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <ConversationDetail conversationId={selectedId} />
+          <div className="bg-white/90 rounded-2xl shadow-2xl p-0 max-w-2xl w-full relative border border-teal-100 max-h-[80vh] flex flex-col">
+            <div className="sticky top-0 z-10 bg-white/90 rounded-t-2xl px-8 pt-8 pb-4 flex items-center justify-between border-b border-teal-100">
+              <h2 className="font-semibold flex items-center gap-2 text-lg">
+                <span className="text-teal-600">Messages</span>
+              </h2>
+              <button
+                className="text-gray-500 hover:text-gray-800 text-2xl cursor-pointer"
+                onClick={() => setSelectedId(null)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto px-8 pb-8 hide-scrollbar">
+              <ConversationDetail conversationId={selectedId} />
+            </div>
           </div>
         </div>
       )}

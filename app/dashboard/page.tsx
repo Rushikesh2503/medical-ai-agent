@@ -13,6 +13,7 @@ export default function Dashboard() {
   const [conversationStart, setConversationStart] = useState<Date | null>(null);
   const [showLoader, setShowLoader] = useState(false);
   const [firstAgentMessage, setFirstAgentMessage] = useState(false);
+  const [shouldStartAgent, setShouldStartAgent] = useState(false);
   const vapiRef = useRef<any>(null);
 
   useEffect(() => {
@@ -44,11 +45,19 @@ export default function Dashboard() {
     vapiRef.current.start(VAPI_ASSISTANT_ID);
   };
 
+  useEffect(() => {
+    if (shouldStartAgent) {
+      vapiRef.current.start(VAPI_ASSISTANT_ID);
+      setShouldStartAgent(false);
+    }
+  }, [shouldStartAgent]);
+
   const stopConversation = async () => {
     setIsTalking(false);
     vapiRef.current.stop();
     setShowLoader(false);
     if (!messages.length) return;
+
     // 1. Create the conversation
     const res = await fetch("/api/conversations", {
       method: "POST",
