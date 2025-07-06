@@ -84,37 +84,37 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="max-w-xl mx-auto py-12">
-      <h1 className="text-3xl font-bold mb-6 flex items-center gap-2">
+    <div className="w-full max-w-xl mx-auto py-6 px-2 sm:px-4">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 flex items-center gap-2">
         <FaUserMd className="text-teal-600" /> Talk to Your Medical AI Agent
       </h1>
-      <div className="flex gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mb-4 sm:mb-6 w-full">
         <button
           onClick={startConversation}
           disabled={isTalking}
-          className="bg-teal-600 text-white px-6 py-2 rounded-lg font-semibold shadow hover:bg-teal-700 transition disabled:opacity-50"
+          className="bg-teal-600 text-white px-4 sm:px-6 py-2 rounded-lg font-semibold shadow hover:bg-teal-700 transition disabled:opacity-50 w-full sm:w-auto"
         >
           Start Conversation
         </button>
         <button
           onClick={stopConversation}
           disabled={!isTalking}
-          className="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg font-semibold shadow hover:bg-gray-400 transition disabled:opacity-50"
+          className="bg-gray-300 text-gray-700 px-4 sm:px-6 py-2 rounded-lg font-semibold shadow hover:bg-gray-400 transition disabled:opacity-50 w-full sm:w-auto"
         >
           Stop
         </button>
       </div>
-      <div className="bg-white rounded-lg shadow p-4 min-h-[200px] max-h-96 overflow-y-auto">
-        <h2 className="font-semibold mb-2 flex items-center gap-2">
+      <div className="bg-white rounded-lg shadow p-2 sm:p-4 min-h-[200px] max-h-96 overflow-y-auto w-full">
+        <h2 className="font-semibold mb-2 flex items-center gap-2 text-base sm:text-lg">
           <FaUserMd className="text-teal-600" /> Transcription
         </h2>
         {showLoader && (
           <div className="flex flex-col items-center justify-center py-8">
-            <span className="animate-spin text-5xl text-teal-500 mb-2">🩺</span>
-            <span className="text-teal-700 font-medium">Connecting to your medical assistant...</span>
+            <span className="animate-spin text-4xl sm:text-5xl text-teal-500 mb-2">🩺</span>
+            <span className="text-teal-700 font-medium text-base sm:text-lg">Connecting to your medical assistant...</span>
           </div>
         )}
-        <div className="space-y-3 text-sm">
+        <div className="space-y-3 text-xs sm:text-sm">
           {transcripts.length === 0 && !showLoader && (
             <div className="text-gray-400">No conversation yet.</div>
           )}
@@ -132,9 +132,9 @@ export default function Dashboard() {
                 ref={lastMsgRef}
                 className={`flex items-end gap-2 ${isAssistant ? "justify-start" : "justify-end"}`}
               >
-                {isAssistant && <FaUserMd className="text-2xl text-teal-500" />}
+                {isAssistant && <FaUserMd className="text-xl sm:text-2xl text-teal-500" />}
                 <span
-                  className={`px-4 py-2 rounded-2xl shadow max-w-[70%] break-words ${
+                  className={`px-3 sm:px-4 py-2 rounded-2xl shadow max-w-[90%] sm:max-w-[70%] break-words text-xs sm:text-sm ${
                     isAssistant
                       ? isLatest
                         ? "bg-teal-100 border-l-4 border-teal-500"
@@ -146,7 +146,7 @@ export default function Dashboard() {
                 >
                   {msg.content}
                 </span>
-                {!isAssistant && <FaUser className="text-2xl text-blue-500" />}
+                {!isAssistant && <FaUser className="text-xl sm:text-2xl text-blue-500" />}
               </div>
             );
           })}
@@ -154,7 +154,7 @@ export default function Dashboard() {
       </div>
       <a
         href="/history"
-        className="text-teal-700 hover:underline"
+        className="text-teal-700 hover:underline block mt-4 text-center sm:text-left"
       >
         View Conversation History
       </a>
